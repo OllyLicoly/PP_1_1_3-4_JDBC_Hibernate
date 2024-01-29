@@ -21,6 +21,8 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             Statement statement = connection.prepareStatement(sql);
 
             statement.executeUpdate(sql);
+            connection.commit();
+            connection.rollback();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -36,6 +38,8 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             Statement statement = connection.prepareStatement(sql);
 
             statement.executeUpdate(sql);
+            connection.commit();
+            connection.rollback();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,6 +59,9 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             preparedStatement.setInt(3, age);
 
             preparedStatement.executeUpdate();
+            connection.commit();
+            connection.rollback();
+
             System.out.printf("User с именем %s добавлен в базу данных \n", name);
 
         } catch (SQLException e) {
@@ -74,6 +81,8 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             preparedStatement.setLong(1, id);
 
             preparedStatement.executeUpdate();
+            connection.commit();
+            connection.rollback();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,6 +106,9 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
                 user.setLastName(resultSet.getString("LASTNAME"));
                 user.setAge(resultSet.getByte("AGE"));
                 userList.add(user);
+
+                connection.commit();
+                connection.rollback();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -112,6 +124,8 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(sql);
+            connection.commit();
+            connection.rollback();
 
         } catch (SQLException e) {
             e.printStackTrace();
