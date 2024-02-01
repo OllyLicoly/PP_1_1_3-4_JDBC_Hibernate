@@ -143,7 +143,6 @@ public class UserDaoJDBCImpl extends Util implements UserDao {
                 userList.add(user);
 
                 connection.commit();
-                connection.rollback();
             }
         } catch (SQLException e) {
             e.printStackTrace();
